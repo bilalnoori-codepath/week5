@@ -67,28 +67,37 @@ TRUE_LABELS = [
     "negative",  # "I am not happy about this"
 ]
 
-# TODO: Add 5-10 more posts and labels.
-#
-# Requirements:
-#   - For every new post you add to SAMPLE_POSTS, you must add one
-#     matching label to TRUE_LABELS.
-#   - SAMPLE_POSTS and TRUE_LABELS must always have the same length.
-#   - Include a variety of language styles, such as:
-#       * Slang ("lowkey", "highkey", "no cap")
-#       * Emojis (":)", ":(", "🥲", "😂", "💀")
-#       * Sarcasm ("I absolutely love getting stuck in traffic")
-#       * Ambiguous or mixed feelings
-#
-# Tips:
-#   - Try to create some examples that are hard to label even for you.
-#   - Make a note of any examples that you and a friend might disagree on.
-#     Those "edge cases" are interesting to inspect for both the rule based
-#     and ML models.
-#
-# Example of how you might extend the lists:
-#
-# SAMPLE_POSTS.append("Lowkey stressed but kind of proud of myself")
-# TRUE_LABELS.append("mixed")
-#
-# Remember to keep them aligned:
-#   len(SAMPLE_POSTS) == len(TRUE_LABELS)
+SAMPLE_POSTS += [
+    "Not gonna lie, this is kinda mid 😬",
+    "I'm so exhausted but I finally got it done! 🎉",
+    "lowkey dreading tomorrow but it is what it is 🙃",
+    "just got ghosted lol why am I even surprised 💀",
+    "okay the food was actually bussin no cap 🔥",
+    "I absolutely love sitting in traffic for two hours 🙃",
+    "feel like crying but also kinda fine?? idk man",
+]
+
+TRUE_LABELS += [
+    "negative",   # "Not gonna lie, this is kinda mid 😬"
+    "mixed",      # "I'm so exhausted but I finally got it done! 🎉"
+    "mixed",      # "lowkey dreading tomorrow but it is what it is 🙃"
+    "negative",   # "just got ghosted lol why am I even surprised 💀"
+    "positive",   # "okay the food was actually bussin no cap 🔥"
+    "negative",   # "I absolutely love sitting in traffic for two hours 🙃" (sarcasm)
+    "mixed",      # "feel like crying but also kinda fine?? idk man"
+]
+
+# Stress-test posts: sarcasm, double negation, faint positivity, and slang the word list won't know
+SAMPLE_POSTS += [
+    "oh great, another Monday 🙄",
+    "not gonna say it was bad but I definitely didn't have fun",
+    "it's not the worst thing ever I guess",
+    "that presentation slapped fr fr 🔥",
+]
+
+TRUE_LABELS += [
+    "negative",   # "oh great, another Monday 🙄" — sarcasm, 'great' used ironically
+    "negative",   # "not gonna say it was bad but I definitely didn't have fun" — double negation still lands negative
+    "mixed",      # "it's not the worst thing ever I guess" — lukewarm, double-negative softens it
+    "positive",   # "that presentation slapped fr fr 🔥" — enthusiastic praise, pure slang
+]
